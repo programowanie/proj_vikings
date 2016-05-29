@@ -1,4 +1,6 @@
-#include "vikings.h"
+#include "Langskip.h"
+#include "Lands.h"
+
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
@@ -6,15 +8,14 @@
 #include <unistd.h>
 #include <string>
 
-#define N 12		//[4,12] lands
-#define INTERVAL 90000		//interval between fights
-#define PARAM 15		//offence,defence
-#define MONEY_RANGE 15				//money = beastRatio * MONEY_RANGE
+#define N 12					//[4,12] lands
+#define INTERVAL 90000			//interval between fights
+#define PARAM 15				//offence,defence
+#define MONEY_RANGE 15			//money = beastRatio * MONEY_RANGE
 
 using namespace std;
 
 void showLangskips();
-//void averageThatLangskip(int i, Langskip tempLangskip);
 
 
 int main(int argc, char const *argv[])
@@ -54,7 +55,6 @@ int main(int argc, char const *argv[])
 		double gold = lands[i].beastRatio() * MONEY_RANGE;
 		int isBrutal_counter = 0;
 		//tempLangskip - averaging
-//		averageThatLangskip(i,tempLangskip);
 
 /////////////////////////////////////////
 double t_langskipType = 0,
@@ -62,8 +62,7 @@ double t_langskipType = 0,
 			t_offenceChance = 0,
 			t_offencePower = 0,
 			t_defenceChance = 0,
-			t_defencePower = 0,
-			t_beastRatio = 1;
+			t_defencePower = 0;
 
 		int amount = Langskip::langskip.size();
 
@@ -85,7 +84,7 @@ double t_langskipType = 0,
 		tempLangskip._defence.chance = t_langskipType*(t_defenceChance /= amount);
 		tempLangskip._defence.power = t_langskipType*(t_defencePower /= amount);
 
-		tempLangskip._beastRatio = t_beastRatio = t_hp * (t_offenceChance*t_offencePower*t_defencePower*t_defenceChance);
+		tempLangskip._beastRatio = t_hp * (t_offenceChance*t_offencePower*t_defencePower*t_defenceChance);
 
 ///////////////////////////////////////
 
@@ -137,7 +136,7 @@ double t_langskipType = 0,
 			}
 		}
 
-		//if vikings lose
+		//if vikings loose
 		if( tempLangskip.hp() < 0)
 		{
 			int choose = rand() % 3;
@@ -177,7 +176,7 @@ double t_langskipType = 0,
 		showLangskips();
 	}
 
-	printf("\n\n\tVICTORY OF VIKIGS!!!\n\n");
+	printf("\n\n\tVICTORY OF VIKINGS!!!\n\n");
 }
 
 void showLangskips()
